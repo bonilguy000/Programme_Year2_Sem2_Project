@@ -27,5 +27,24 @@ string readFile() {
 
 	return tempString;
 }
+int count() {
+	
+	int total=0;
+	ifstream filename;
+	filename.open("DS_10K.txt");
+
+	while(!filename.eof()){
+		getline(filename);
+		total++;
+	}
+	return total;
+	filename.close();
+
+}
+
+
+
+
+
 
 #endif
