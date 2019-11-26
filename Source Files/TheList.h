@@ -30,6 +30,20 @@ public:
 
 	RecordNode* getHead();
 };
+void TheList::insertList() {
+	count();
+	readFile();
+	ifstream inputfile;
+	//make a conditional statement on which file to access 
+	inputfile.open("DS_10K.txt");// when user which file he's going visit 
+	cout << "Please insert your ID" << endl;
+	cin >> ID;
+	cout << "Please type your current job" << endl;
+	cin >> Job_Title;
+	cout << "Enter your e-mail" << endl;
+	cin >> Email;
+}
+
 
 #endif
 
