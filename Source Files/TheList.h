@@ -18,7 +18,7 @@ public:
 
 	void printTheList();
 
-	void insertList();
+	void insertList();//has Readfile.h(which has file reader and row counter)
 
 	void removeRecordsPorC(); //Remove record with Phone Number or Country
 

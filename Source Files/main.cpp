@@ -14,6 +14,8 @@ int main()
 		7. Skills	(string)
 		8. Country	(string)
 	2. Insertion of dataset:
+		-Create a file reader that counts how many records are in there
+		and also inserts it.
 		-Users can add data as a batch with .txt filename input
 		from user to insert new datasets
 		-New data will replace existing one(delete old records)
