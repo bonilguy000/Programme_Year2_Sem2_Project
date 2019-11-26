@@ -28,7 +28,7 @@ string readFile() {
 	return tempString;
 }
 int count() {
-	
+	readFile();
 	int total=0;
 	ifstream filename;
 	filename.open("DS_10K.txt");
@@ -39,7 +39,6 @@ int count() {
 	}
 	return total;
 	filename.close();
-
 }
 
 
