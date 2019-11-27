@@ -1,10 +1,17 @@
 #include <iostream>
+#include "RecordHash.h"
+#include "TheList.h"
 using namespace std;
 
 int main()
-{	
+{
+	int choice=0;
+	cout << "1 for insert, 2 for delete, 3 for search" << endl;
+	cin >> choice;
 
-
+	if (choice = 1) {
+		TheList::insertList();
+	}
 
 
 	/*Tasks to complete(0/5)
