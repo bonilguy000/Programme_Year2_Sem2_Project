@@ -43,7 +43,5 @@ void TheList::insertList() {
 	cout << "Enter your e-mail" << endl;
 	cin >> Email;
 }
-
-
 #endif
 
