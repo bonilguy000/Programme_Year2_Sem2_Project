@@ -6,6 +6,7 @@ void TheList::printTheList() {
 }
 void TheList::insertList() {
 	HashMap List;
+	int key = 0;
 	string userInput;
 	string tempString = "";
 	cout << "Please input filename: ";
@@ -20,7 +21,15 @@ void TheList::insertList() {
 	string ID, Job_Title, Email, Last_Name, First_Name, Phone_Num, Skills, Country;
 	while (inputFile >> ID >> Job_Title >> Email >> Last_Name >> First_Name >> Phone_Num >> Skills >> Country) {
 		stringstream x(Phone_Num);
-		int key = 0;
 		x >> key;
+		HashMap::put(key,ID,Job_Title,Email,Last_Name,First_Name,Phone_Num,Skills,Country)
 	}
+	
+
+
+
+
+
+
+
 }

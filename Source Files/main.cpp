@@ -2,7 +2,11 @@
 using namespace std;
 
 int main()
-{
+{	
+
+
+
+
 	/*Tasks to complete(0/5)
 	1. Make record class(8 attributes):
 		1. ID (string)	- alphanumeric	unique	identifier
