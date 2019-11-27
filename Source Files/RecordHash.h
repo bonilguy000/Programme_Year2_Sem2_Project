@@ -11,7 +11,7 @@ private:
 public:
 
 	RecordHashEntry(int key,string iD, string job_Title, string email, string last_Name, string first_Name, string phone_Num, string skills, string country) {
-		this->key = key;
+		this->key = key
 		this->ID = iD;
 		this->Job_Title = job_Title;
 		this->Email = email;
