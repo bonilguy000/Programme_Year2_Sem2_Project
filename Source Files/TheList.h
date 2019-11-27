@@ -32,7 +32,7 @@ void TheList::printTheList() {
 void TheList::insertList() {
 	// Yo whats the purpose of this m8 -Bonil
 	count();
-	readFile();
+	
 	ifstream inputfile;
 	//make a conditional statement on which file to access 
 	inputfile.open("DS_10K.txt");// when user which file he's going visit 
