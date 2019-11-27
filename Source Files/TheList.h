@@ -30,6 +30,10 @@ public:
 
 	RecordNode* getHead();
 };
+
+void TheList::printTheList() {
+
+}
 void TheList::insertList() {
 	count();
 	readFile();
