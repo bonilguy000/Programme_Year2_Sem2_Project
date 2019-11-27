@@ -1,7 +1,7 @@
 #ifndef RecordHash_h
 #define RecordHash_h
 #include <string>
-//Record hash here 
+//Record hash here
 using namespace std;
 class RecordHashEntry {
 private:

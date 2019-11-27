@@ -1,6 +1,6 @@
 #ifndef ReadFile_h
 #define ReadFile_h
-//test
+
 #include <string>
 #include <iostream>
 #include <fstream>
