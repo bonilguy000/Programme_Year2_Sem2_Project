@@ -21,10 +21,10 @@ public:
 		this->Skills = skills;
 		this->Country = country;
 	}
-	int getKey() {
+	int getKey() { //used to grab key from private
 		return key;
 	}
-	int getRecord() {
+	int getRecord() { //used to grab record from private
 		return ID;
 		return Job_Title;
 		return Email;
@@ -35,18 +35,18 @@ public:
 		return Country;
 	}
 };
-const int TABLE_SIZE = 100000;
+const int TABLE_SIZE = 100000; // current table size of the hash, should change later 
 
 class HashMap {
 private:
 	RecordHashEntry **table;
 public:
-	HashMap() {
+	HashMap() { //Create a new hash table
 		table = new RecordHashEntry*[TABLE_SIZE];
 		for (int i = 0; i < TABLE_SIZE; i++)
 			table[i] = NULL;
 	}
-	int get(int key) {
+	int get(int key) { //Get a record from the hash based on what key is given
 		int hash = (key % TABLE_SIZE);
 		while (table[hash] != NULL && table[hash]->getKey() != key)
 			hash = (hash + 1) % TABLE_SIZE;
@@ -55,15 +55,16 @@ public:
 		else
 			return table[hash]->getRecord();
 	}
+	// Insert a new record
 	void put(int key, string iD, string job_Title, string email, string last_Name, string first_Name, string phone_Num, string skills, string country) {
 		int hash = key % TABLE_SIZE);
-		while (table[hash] != NULL && table[hash]->getKey() != key)
+		while (table[hash] != NULL && table[hash]->getKey() != key) // To avoid collision,the programme find another location with calculation(open addressing(closed hashing)
 			hash = (hash + 1) % TABLE_SIZE;
-		if (table[hash] != NULL)
+		if (table[hash] != NULL) // Or if the keys are the same but a new record is being inserted, remove the previous record
 			delete table[hash];
-		table[hash] = new RecordHashEntry(key, iD,job_Title,email,last_Name,first_Name,phone_Num,skills,country);
+		table[hash] = new RecordHashEntry(key, iD,job_Title,email,last_Name,first_Name,phone_Num,skills,country); // Finally the record is inserted
 	}
-	~HashMap() {
+	~HashMap() { // Deconstructor for hash table
 		for (int i = 0; i < TABLE_SIZE; i++)
 			if (table[i] != NULL)
 				delete table[i];
