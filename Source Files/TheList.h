@@ -1,12 +1,10 @@
 #ifndef TheList_h
 #define TheList_h
 
-#include "RecordNode.h"
+#include "RecordHash.h"
 #include "ReadFile.h"
 
 class TheList {
-public:
-	RecordNode* head;
 
 public:
 
@@ -26,11 +24,13 @@ public:
 
 	void multiSearch(); //Search based on two data
 
-	void setHead(RecordNode* node);
-
-	RecordNode* getHead();
 };
+
+void TheList::printTheList() {
+
+}
 void TheList::insertList() {
+	// Yo whats the purpose of this m8 -Bonil
 	count();
 	
 	ifstream inputfile;
