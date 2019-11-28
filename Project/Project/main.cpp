@@ -10,7 +10,7 @@ int main()
 	cin >> choice;
 
 	if (choice = 1) {
-	insertList();
+		insertList();
 	}
 
 	return 0;

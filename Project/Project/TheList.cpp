@@ -36,8 +36,16 @@ HashMap::~HashMap() { // Deconstructor for hash table
 	delete[] table;
 }
 
+HashMap List;
+
+void printTheList() {
+	for (int i = 0; i < TABLE_SIZE; i++)
+	{	
+		cout << List.get(i);
+	}
+};
+
 void insertList() {
-	HashMap List;
 	int num = 0, key = 0;
 	string userInput;
 	string tempString = "";
@@ -45,12 +53,7 @@ void insertList() {
 	cin >> userInput;
 	ifstream inputFile(userInput);
 	
-
-	while (!inputFile.good()) {
-		cout << "File name is wrong, please input again: ";
-		cin >> userInput;
-		inputFile.open(userInput);
-	}
+	
 	string ID, Job_Title, Email, Last_Name, First_Name, Phone_Num, Skills, Country;
 	while (inputFile >> ID >> Job_Title >> Email >> Last_Name >> First_Name >> Phone_Num >> Skills >> Country) {
 		stringstream x(Phone_Num);
