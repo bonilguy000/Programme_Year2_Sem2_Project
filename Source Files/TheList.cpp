@@ -25,11 +25,10 @@ void TheList::insertList() {
 		
 		while (num != 0) {
 			key = key + num % 10;
-			n = n / 10;
+			num = num / 10;
 		}
-		retunr key;
+		return key;
 		HashMap::put(key, ID, Job_Title, Email, Last_Name, First_Name, Phone_Num, Skills, Country)
-	
 	}
 
 	
