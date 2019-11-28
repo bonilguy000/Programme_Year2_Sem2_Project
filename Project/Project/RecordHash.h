@@ -10,8 +10,8 @@ private:
 
 public:
 
-	RecordHashEntry(int key,string iD, string job_Title, string email, string last_Name, string first_Name, string phone_Num, string skills, string country) {
-		this->key = key
+	RecordHashEntry(int key, string iD, string job_Title, string email, string last_Name, string first_Name, string phone_Num, string skills, string country) {
+		this->key = key;
 		this->ID = iD;
 		this->Job_Title = job_Title;
 		this->Email = email;
@@ -24,7 +24,7 @@ public:
 	int getKey() { //used to grab key from private
 		return key;
 	}
-	int getRecord() { //used to grab record from private
+	string getRecord() { //used to grab record from private
 		return ID;
 		return Job_Title;
 		return Email;
@@ -40,14 +40,15 @@ class HashMap {
 private:
 	RecordHashEntry **table;
 public:
-	HashMap(long TABLE_SIZE) { //Create a new hash table
-		cout >> "Please input the number of records you will insert:";
-		cin << TABLE_SIZE;
+	long TABLE_SIZE;
+	HashMap() { //Create a new hash table
+		cout << "Please input the number of records you will insert:";
+		cin >> TABLE_SIZE;
 		table = new RecordHashEntry*[TABLE_SIZE];
 		for (int i = 0; i < TABLE_SIZE; i++)
 			table[i] = NULL;
 	}
-	int get(int key) { //Get a record from the hash based on what key is given
+	string get(int key) { //Get a record from the hash based on what key is given
 		int hash = (key % TABLE_SIZE);
 		while (table[hash] != NULL && table[hash]->getKey() != key)
 			hash = (hash + 1) % TABLE_SIZE;
@@ -63,7 +64,7 @@ public:
 			hash = (hash + 1) % TABLE_SIZE;
 		if (table[hash] != NULL) // Or if the keys are the same but a new record is being inserted, remove the previous record
 			delete table[hash];
-		table[hash] = new RecordHashEntry(key, iD,job_Title,email,last_Name,first_Name,phone_Num,skills,country); // Finally the record is inserted
+		table[hash] = new RecordHashEntry(key, iD, job_Title, email, last_Name, first_Name, phone_Num, skills, country); // Finally the record is inserted
 	}
 	~HashMap() { // Deconstructor for hash table
 		for (int i = 0; i < TABLE_SIZE; i++)

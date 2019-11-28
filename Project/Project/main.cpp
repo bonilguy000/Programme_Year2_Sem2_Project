@@ -5,7 +5,7 @@ using namespace std;
 
 int main()
 {
-	int choice=0;
+	int choice = 0;
 	cout << "1 for insert, 2 for delete, 3 for search" << endl;
 	cin >> choice;
 
@@ -13,7 +13,7 @@ int main()
 		TheList::insertList();
 		TheList::printTheList;
 	}
-	
+
 	return 0;
 
 	/*Tasks to complete(0/5)

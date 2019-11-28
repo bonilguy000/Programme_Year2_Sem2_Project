@@ -2,8 +2,7 @@
 #include "RecordHash.h"
 #include "TheList.h"
 void TheList::printTheList() {
-	for (string i : List)
-		cout << i.second << " " << i.third << " " << i.fourth << " " << i.fifth << " " << i.sixth << " " << i.seventh << " " << i.eighth << " " << i.nineth;
+	
 }
 void TheList::insertList() {
 	HashMap List;
@@ -23,7 +22,7 @@ void TheList::insertList() {
 	while (inputFile >> ID >> Job_Title >> Email >> Last_Name >> First_Name >> Phone_Num >> Skills >> Country) {
 		stringstream x(Phone_Num);
 		x >> num;
-		
+
 		while (num != 0) {
 			key = key + num % 10;
 			num = num / 10;
@@ -32,7 +31,7 @@ void TheList::insertList() {
 		HashMap::put(key, ID, Job_Title, Email, Last_Name, First_Name, Phone_Num, Skills, Country)
 	}
 
-	
+
 
 
 
