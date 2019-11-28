@@ -10,8 +10,7 @@ int main()
 	cin >> choice;
 
 	if (choice = 1) {
-		TheList::insertList();
-		TheList::printTheList;
+	insertList();
 	}
 
 	return 0;

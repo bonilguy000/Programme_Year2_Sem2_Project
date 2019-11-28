@@ -3,13 +3,6 @@
 
 #include "RecordHash.h"
 
-class TheList {
-
-public:
-
-	TheList();
-
-	~TheList();
 
 	bool isEmpty();
 
@@ -23,7 +16,6 @@ public:
 
 	void multiSearch(); //Search based on two data
 
-};
 
 
 #endif
