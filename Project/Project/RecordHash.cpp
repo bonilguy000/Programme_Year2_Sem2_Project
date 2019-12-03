@@ -59,7 +59,6 @@ void Hash::PrintTable() {
 		if (HashTable[i]->ID != "empty") {
 			cout << "----------------------------------------------------------------" << endl;
 			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << endl;
-			cout << "----------------------------------------------------------------" << endl;
 			PrintChainedRecords(i);
 		}
 	}
@@ -75,7 +74,6 @@ void Hash::PrintChainedRecords(int index) {
 		while (Ptr != NULL) {
 			cout << "----------------------------------------------------------------" << endl;
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << endl;
-			cout << "----------------------------------------------------------------" << endl;
 			Ptr = Ptr->next;
 		}
 	}

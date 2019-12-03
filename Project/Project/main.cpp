@@ -1,4 +1,4 @@
-#include <cstdlib>
+﻿#include <cstdlib>
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -18,7 +18,7 @@ int main()
 	cin >> fileInput;
 	ifstream File(fileInput);
 	string line;
-	string ID, Job_Title, Email, Last_Name, First_Name, Phone_Number, Skills, Country;
+	string ID, Job_Title, Email, Last_Name, First_Name, Phone_Number, Skills, Country, Country2;
 	string UsrInput;
 
 	while (File.eof()!=true){
@@ -30,6 +30,8 @@ int main()
 		getline(File, Phone_Number, '\t');
 		getline(File, Skills, '\t');
 		getline(File, Country, '\t');
+		getline(File, Country2, '\n');
+		Country = Country + Country2;
 		Test.InsertRecord(ID, Job_Title, Email, Last_Name, First_Name, Phone_Number, Skills, Country);
 	}
 	Test.PrintTable();
@@ -91,5 +93,6 @@ int main()
 		single record should be displayed (maybe also single batch)
 		-For task 4, only the total time taken for searching for a
 		single record should be displayed
+		
 	*/
 }
