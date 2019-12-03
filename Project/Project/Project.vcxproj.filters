@@ -18,15 +18,12 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TheList.cpp">
+    <ClCompile Include="RecordHash.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RecordHash.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TheList.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

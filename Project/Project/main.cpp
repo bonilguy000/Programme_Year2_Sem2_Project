@@ -1,20 +1,45 @@
+#include <cstdlib>
 #include <iostream>
-#include "RecordHash.h"
-#include "TheList.h"
-using namespace std;
+#include <string>
+#include <fstream>
+#include <sstream>
 
+#include "RecordHash.h"
+
+using namespace std;
 int main()
 {
-	int choice = 0;
-	cout << "1 for insert, 2 for delete, 3 for search" << endl;
-	cin >> choice;
+	Hash Test;
+	string fileInput;
+	long NumOfRecords;
+	//cout << "Please input the number of records you will insert: ";
+	//cin >> NumOfRecords;
+	cout << "Please insert a txt data file: ";
+	cin >> fileInput;
+	ifstream File(fileInput);
+	string line;
+	string ID, Job_Title, Email, Last_Name, First_Name, Phone_Number, Skills, Country;
+	string UsrInput;
 
-	if (choice = 1) {
-		insertList();
+	while (File.eof()!=true){
+		getline(File, ID, '\t');
+		getline(File, Job_Title, '\t');
+		getline(File, Email, '\t');
+		getline(File, Last_Name, '\t');
+		getline(File, First_Name, '\t');
+		getline(File, Phone_Number, '\t');
+		getline(File, Skills, '\t');
+		getline(File, Country, '\t');
+		Test.InsertRecord(ID, Job_Title, Email, Last_Name, First_Name, Phone_Number, Skills, Country);
 	}
-
+	Test.PrintTable();
+	system("pause");
+	system("CLS");
+	cout << "Input Phone Number for searching a record: ";
+	cin >> UsrInput;
+	Test.FindWithPhoneNumber(UsrInput);
+	system("pause");
 	return 0;
-
 	/*Tasks to complete(0/5)
 	1. Make record class(8 attributes):
 		1. ID (string)	- alphanumeric	unique	identifier
