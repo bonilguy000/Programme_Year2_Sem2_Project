@@ -3,6 +3,7 @@
 #include <string>
 #include <fstream>
 #include <chrono>
+#include <locale>
 
 #include "RecordHash.h"
 
@@ -10,6 +11,7 @@ using namespace std::chrono;
 
 int main()
 {
+	
 	Hash Test;
 	int choice;
 	int choice2;
@@ -17,7 +19,7 @@ int main()
 	string ID, Job_Title, Email, Last_Name, First_Name, Phone_Number, Skills, Country, Country2;
 	string UsrInput;
 	string UsrInput2;
-
+	bool Insert = false;
 	do {
 		cout << "Select an option:\n";
 		cout << "1. Insert a dataset\n" << "2. Delete record(s)\n" << "3. Search record(s)\n" << "4.Print all records\n" << "5.Quit\n";
@@ -31,6 +33,8 @@ int main()
 			cin >> fileInput;
 			ifstream File(fileInput);
 			auto start = high_resolution_clock::now();
+			if (Insert == true)
+				Test.EmptyTable();
 			while (File.eof() != true) {
 				getline(File, ID, '\t');
 				getline(File, Job_Title, '\t');
@@ -47,6 +51,7 @@ int main()
 			Test.PrintTable();
 			auto stop = high_resolution_clock::now();
 			auto duration = duration_cast<seconds>(stop - start);
+			Insert = true;
 			cout << "Time taken: " << duration.count() << " seconds.\n";
 			system("pause");
 			system("CLS");
@@ -56,7 +61,7 @@ int main()
 		case 2:
 			system("CLS");
 			cout << "Select how you would like to delete a record(s): \n";
-			cout << "1. Phone Number(Single deletion)\n" << "2. Country(delete by batch)\n";
+			cout << "1. Phone Number(Single deletion)\n" << "2. Country(delete by batch)\n" << "3. Return\n";
 			cout << "Option: ";
 			cin >> choice2;
 			switch (choice2) {
@@ -156,6 +161,7 @@ int main()
 			break;
 		case 4:
 			Test.PrintTable();
+			break;
 		case 5:
 			cout << "Thanks for using this programme\n";
 			system("pause");

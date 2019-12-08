@@ -55,13 +55,32 @@ void Hash::InsertRecord(string ID, string Job_Title, string Email, string Last_N
 	}
 }
 
-
-
+void Hash::EmptyTable() {
+	for (int i = 0; i < tableSize; i++) {
+		if (HashTable[i]->ID != "empty") {
+			HashTable[i]->ID = "empty";
+			HashTable[i]->Job_Title = "empty";
+			HashTable[i]->Email = "empty";
+			HashTable[i]->Last_Name = "empty";
+			HashTable[i]->First_Name = "empty";
+			HashTable[i]->Phone_Number = "empty";
+			HashTable[i]->Skills = "empty";
+			HashTable[i]->Country = "empty";
+			if (HashTable[i]->next != NULL) {
+				Person *temp = HashTable[i];
+				HashTable[i] = temp->next;
+				delete temp;
+				}
+				HashTable[i]->next = NULL;
+			}
+			else HashTable[i]->next = NULL;
+		}
+	}
 
 void Hash::PrintTable() {
 	for (int i = 0; i < tableSize; i++) {
 		if (HashTable[i]->ID != "empty") {
-			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
 			PrintChainedRecords(i);
 		}
@@ -76,7 +95,7 @@ void Hash::PrintChainedRecords(int index) {
 	else {
 		Ptr = Ptr->next;
 		while (Ptr != NULL) {
-			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 			Ptr = Ptr->next;
 		}
@@ -104,10 +123,10 @@ void Hash::FindWithPhoneNumber(string Phone_Number) {
 		Ptr = Ptr->next;
 	}
 	if (PhoneNumberFound == true) {
-		cout << ID << " " << Job_Title << " " << Email << " " << Last_Name << " " << First_Name << " " << Phone_Number << " " << Skills << " " << Country << endl;
+		cout << ID << " " << Job_Title << " " << Email << " " << Last_Name << " " << First_Name << " " << Phone_Number << " " << Skills << " " << Country << "\n";
 		auto stop = high_resolution_clock::now();
-		auto duration = duration_cast<milliseconds>(stop - start);
-		cout << "Time taken: " << duration.count() << " milliseconds\n";
+		auto duration = duration_cast<microseconds>(stop - start);
+		cout << "Time taken: " << duration.count() << " microseconds\n";
 	}
 	else {
 		cout << "No record found with " << Phone_Number << endl;
@@ -121,11 +140,11 @@ void Hash::FindWithSkills(string Skills) {
 		for (int i = 0; i < tableSize; i++) {
 			auto start = high_resolution_clock::now();
 			if (HashTable[i]->Skills == Skills && letter == (HashTable[i]->Country.at(0))) {
-				cout << "---------------------------------------------------------------------------------------------------------------\n";
+				cout << "--------------------------------------------------------------------------------------------------------------\n";
 				cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
 				auto stop = high_resolution_clock::now();
-				auto duration = duration_cast<milliseconds>(stop - start);
-				cout << "Time taken: " << duration.count() << " milliseconds\n";
+				auto duration = duration_cast<microseconds>(stop - start);
+				cout << "Time taken: " << duration.count() << " microseconds\n";
 			}
 			if (HashTable[i]->ID != "empty") {
 				FindChainedWithSkills(Skills, i, letter);
@@ -144,11 +163,11 @@ void Hash::FindChainedWithSkills(string Skills, int index, char letter) {
 	while (Ptr != NULL) {
 		auto start = high_resolution_clock::now();
 		if (Ptr->Skills == Skills && letter == ((Ptr->Country).at(0))) {
-			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<milliseconds>(stop - start);
-			cout << "Time taken: " << duration.count() << " milliseconds\n";
+			auto duration = duration_cast<microseconds>(stop - start);
+			cout << "Time taken: " << duration.count() << " microseconds\n";
 		}
 		Ptr = Ptr->next;
 	}
@@ -161,11 +180,11 @@ void Hash::FindWithJobTitle(string Job_Title) {
 		for (int i = 0; i < tableSize; i++) {
 			auto start = high_resolution_clock::now();
 			if (HashTable[i]->Job_Title == Job_Title && letter == (HashTable[i]->Country.at(0))) {
-				cout << "---------------------------------------------------------------------------------------------------------------\n";
+				cout << "--------------------------------------------------------------------------------------------------------------\n";
 				cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
 				auto stop = high_resolution_clock::now();
-				auto duration = duration_cast<milliseconds>(stop - start);
-				cout << "Time taken: " << duration.count() << " milliseconds\n";
+				auto duration = duration_cast<microseconds>(stop - start);
+				cout << "Time taken: " << duration.count() << " microseconds\n";
 			}
 			if (HashTable[i]->ID != "empty") {
 				FindChainedWithJobTitle(Job_Title, i, letter);
@@ -184,11 +203,11 @@ void Hash::FindChainedWithJobTitle(string Job_Title, int index, char letter) {
 	while (Ptr != NULL) {
 		auto start = high_resolution_clock::now();
 		if (Ptr->Job_Title == Job_Title && letter == ((Ptr->Country).at(0))) {
-			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<milliseconds>(stop - start);
-			cout << "Time taken: " << duration.count() << " milliseconds\n";
+			auto duration = duration_cast<microseconds>(stop - start);
+			cout << "Time taken: " << duration.count() << " microseconds\n";
 		}
 		Ptr = Ptr->next;
 	}
@@ -199,11 +218,11 @@ void Hash::FindWithCountry(string Country) {
 	for (int i = 0; i < tableSize; i++) {
 		auto start = high_resolution_clock::now();
 		if (HashTable[i]->Country == Country) {
-			cout << "---------------------------------------------------------------------------------------------\n" ;
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<milliseconds>(stop - start);
-			cout << "Time taken: " << duration.count() << " milliseconds\n";
+			auto duration = duration_cast<microseconds>(stop - start);
+			cout << "Time taken: " << duration.count() << " microseconds\n";
 			
 		}
 		if (HashTable[i]->ID != "empty") {
@@ -218,11 +237,11 @@ void Hash::FindChainedWithCountry(string Country, int index) {
 	while (Ptr != NULL) {
 		auto start = high_resolution_clock::now();
 		if (Ptr->Country == Country) {
-			cout << "---------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<milliseconds>(stop - start);
-			cout << "Time taken: " << duration.count() << " milliseconds\n";
+			auto duration = duration_cast<microseconds>(stop - start);
+			cout << "Time taken: " << duration.count() << " microseconds\n";
 		}
 		Ptr = Ptr->next;
 	}
@@ -235,11 +254,11 @@ void Hash::FindWithSkillsXJob(string Skills,string Job_Title) {
 		for (int i = 0; i < tableSize; i++) {
 			auto start = high_resolution_clock::now();
 			if (HashTable[i]->Skills == Skills && HashTable[i]->Job_Title == Job_Title && letter == ((HashTable[i]->Country).at(0))) {
-					cout << "---------------------------------------------------------------------------------------------------------------\n";
+				cout << "--------------------------------------------------------------------------------------------------------------\n";
 					cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
 					auto stop = high_resolution_clock::now();
-					auto duration = duration_cast<milliseconds>(stop - start);
-					cout << "Time taken: " << duration.count() << " milliseconds\n";
+					auto duration = duration_cast<microseconds>(stop - start);
+					cout << "Time taken: " << duration.count() << " microseconds\n";
 			}
 			if (HashTable[i]->ID != "empty") {
 				FindChainedWithSkillsXJob(Skills ,Job_Title, i, letter);
@@ -259,11 +278,11 @@ void Hash::FindChainedWithSkillsXJob(string Skills, string Job_Title, int index,
 		auto start = high_resolution_clock::now();
 		if (Ptr->Skills == Skills  && letter == ((Ptr->Country).at(0))) {
 			if (Ptr->Job_Title == Job_Title) {
-				cout << "---------------------------------------------------------------------------------------------------------------\n";
+				cout << "--------------------------------------------------------------------------------------------------------------\n";
 				cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 				auto stop = high_resolution_clock::now();
-				auto duration = duration_cast<milliseconds>(stop - start);
-				cout << "Time taken: " << duration.count() << " milliseconds\n";
+				auto duration = duration_cast<microseconds>(stop - start);
+				cout << "Time taken: " << duration.count() << " microseconds\n";
 			}
 		}
 		Ptr = Ptr->next;
@@ -274,11 +293,11 @@ void Hash::FindWithSkillsXCountry(string Skills,string Country) {
 	for (int i = 0; i < tableSize; i++) {
 		auto start = high_resolution_clock::now();
 		if (HashTable[i]->Skills == Skills && HashTable[i]->Country == Country) {
-			cout << "---------------------------------------------------------------------------------------------" << endl;
-			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << endl;
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
+			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<milliseconds>(stop - start);
-			cout << "Time taken: " << duration.count() << " milliseconds\n";
+			auto duration = duration_cast<microseconds>(stop - start);
+			cout << "Time taken: " << duration.count() << " microseconds\n";
 			FindChainedWithSkillsXCountry(Skills,Country, i);
 		}
 	}
@@ -290,11 +309,11 @@ void Hash::FindChainedWithSkillsXCountry(string Skills, string Country, int inde
 	while (Ptr != NULL) {
 		auto start = high_resolution_clock::now();
 		if (Ptr->Skills == Skills && Ptr->Country == Country) {
-			cout << "---------------------------------------------------------------------------------------------" << endl;
-			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << endl;
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
+			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<milliseconds>(stop - start);
-			cout << "Time taken: " << duration.count() << " milliseconds\n";
+			auto duration = duration_cast<microseconds>(stop - start);
+			cout << "Time taken: " << duration.count() << " microseconds\n";
 		}
 		Ptr = Ptr->next;
 	}
@@ -305,13 +324,13 @@ void Hash::RemoveWithPhoneNumber(string Phone_Number) {
 	Person* DeLPtr;
 	Person* Ptr1;
 	Person* Ptr2;
-
+	auto start = high_resolution_clock::now();
 	if (HashTable[index]->ID == "empty" && HashTable[index]->Job_Title == "empty" && HashTable[index]->Email == "empty" && HashTable[index]->Last_Name == "empty" && HashTable[index]->First_Name == "empty"&& HashTable[index]->Phone_Number == "empty" && HashTable[index]->Skills == "empty" && HashTable[index]->Country == "empty") {
 		cout << Phone_Number << "was not found\n";
 	}
 	else if (HashTable[index]->Phone_Number == Phone_Number && HashTable[index]->next == NULL){
-		cout << "The following recod is deleted:\n";
-		cout << "---------------------------------------------------------------------------------------------------------------\n";
+		cout << "--------------------------------------------------------------------------------------------------------------\n";
+		cout << "The following record is deleted:\n";
 		cout << HashTable[index]->ID << " " << HashTable[index]->Job_Title << " " << HashTable[index]->Email << " " << HashTable[index]->Last_Name << " " << HashTable[index]->First_Name << " " << HashTable[index]->Phone_Number << " " << HashTable[index]->Skills << " " << HashTable[index]->Country << "\n";
 		HashTable[index]->ID = "empty";
 		HashTable[index]->Job_Title = "empty";
@@ -325,7 +344,7 @@ void Hash::RemoveWithPhoneNumber(string Phone_Number) {
 	else if (HashTable[index]->Phone_Number == Phone_Number) {
 		DeLPtr = HashTable[index];
 		HashTable[index] = HashTable[index]->next;
-		cout << "---------------------------------------------------------------------------------------------------------------\n";
+		cout << "--------------------------------------------------------------------------------------------------------------\n";
 		cout << "The following record is deleted:\n";
 		cout << DeLPtr->ID << " " << DeLPtr->Job_Title << " " << DeLPtr->Email << " " << DeLPtr->Last_Name << " " << DeLPtr->First_Name << " " << DeLPtr->Phone_Number << " " << DeLPtr->Skills << " " << DeLPtr->Country << "\n";
 		delete DeLPtr;
@@ -344,23 +363,25 @@ void Hash::RemoveWithPhoneNumber(string Phone_Number) {
 		}
 		else {
 			DeLPtr = Ptr1;
-			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << "The following record is deleted:\n";
 			cout << DeLPtr->ID << " " << DeLPtr->Job_Title << " " << DeLPtr->Email << " " << DeLPtr->Last_Name << " " << DeLPtr->First_Name << " " << DeLPtr->Phone_Number << " " << DeLPtr->Skills << " " << DeLPtr->Country << "\n";
 			Ptr1 = Ptr1->next;
 			Ptr2->next = Ptr1;
-
 			delete DeLPtr;
 		}
 	}
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop - start);
+	cout << "Time taken: " << duration.count() << " microseconds\n";
 }
 
 void Hash::RemoveWithCountry(string Country) {
 	Person* DeLPtr;
-
+	auto start = high_resolution_clock::now();
 	for (int i = 0; i < tableSize; i++) {
 		if (HashTable[i]->Country == Country && HashTable[i]->next == NULL) {
-			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << "The following record is deleted:\n";
 			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
 			HashTable[i]->ID = "empty";
@@ -375,7 +396,7 @@ void Hash::RemoveWithCountry(string Country) {
 		else if (HashTable[i]->Country == Country) {
 			DeLPtr = HashTable[i];
 			HashTable[i] = HashTable[i]->next;
-			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << "The following record is deleted:\n";
 			cout << DeLPtr->ID << " " << DeLPtr->Job_Title << " " << DeLPtr->Email << " " << DeLPtr->Last_Name << " " << DeLPtr->First_Name << " " << DeLPtr->Phone_Number << " " << DeLPtr->Skills << " " << DeLPtr->Country << "\n";
 			delete DeLPtr;
@@ -387,6 +408,9 @@ void Hash::RemoveWithCountry(string Country) {
 		}
 
 	}
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<microseconds>(stop - start);
+	cout << "Time taken: " << duration.count() << " microseconds\n";
 }
 
 void Hash::RemoveChainedWithCountry(string Country, int index) {
@@ -396,10 +420,10 @@ void Hash::RemoveChainedWithCountry(string Country, int index) {
 	bool deleted = false;
 	Ptr1 = HashTable[index]->next;
 	Ptr2 = HashTable[index];
-	while (Ptr1->next != NULL) {
+	while (Ptr1 != NULL) {
 		if (Ptr1->Country == Country) {
 			DeLPtr = Ptr1;
-			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "--------------------------------------------------------------------------------------------------------------\n";
 			cout << "The following record is deleted:\n";
 			cout << DeLPtr->ID << " " << DeLPtr->Job_Title << " " << DeLPtr->Email << " " << DeLPtr->Last_Name << " " << DeLPtr->First_Name << " " << DeLPtr->Phone_Number << " " << DeLPtr->Skills << " " << DeLPtr->Country << "\n";
 			Ptr1 = Ptr1->next;

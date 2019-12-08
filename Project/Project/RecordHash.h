@@ -46,6 +46,7 @@ public:
 	void RemoveWithPhoneNumber(string PhoneNumber);
 	void RemoveWithCountry(string Country);
 	void RemoveChainedWithCountry(string Country, int index);
+	void EmptyTable();
 };
 
 #endif
