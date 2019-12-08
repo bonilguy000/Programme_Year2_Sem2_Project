@@ -78,6 +78,9 @@ int main()
 				system("pause");
 				system("CLS");
 				break;
+			case 3:
+				system("CLS");
+				break:
 			}
 			break;
 
@@ -147,6 +150,7 @@ int main()
 				system("CLS");
 				break;
 			case 7:
+				system("CLS");
 				break;
 			}
 			break;

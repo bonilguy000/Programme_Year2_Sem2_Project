@@ -147,7 +147,7 @@ void Hash::FindChainedWithSkills(string Skills, int index, char letter) {
 			cout << "---------------------------------------------------------------------------------------------------------------\n";
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<microseconds>(stop - start);
+			auto duration = duration_cast<milliseconds>(stop - start);
 			cout << "Time taken: " << duration.count() << " milliseconds\n";
 		}
 		Ptr = Ptr->next;
@@ -187,7 +187,7 @@ void Hash::FindChainedWithJobTitle(string Job_Title, int index, char letter) {
 			cout << "---------------------------------------------------------------------------------------------------------------\n";
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<microseconds>(stop - start);
+			auto duration = duration_cast<milliseconds>(stop - start);
 			cout << "Time taken: " << duration.count() << " milliseconds\n";
 		}
 		Ptr = Ptr->next;
@@ -202,7 +202,7 @@ void Hash::FindWithCountry(string Country) {
 			cout << "---------------------------------------------------------------------------------------------\n" ;
 			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<microseconds>(stop - start);
+			auto duration = duration_cast<milliseconds>(stop - start);
 			cout << "Time taken: " << duration.count() << " milliseconds\n";
 			
 		}
@@ -221,7 +221,7 @@ void Hash::FindChainedWithCountry(string Country, int index) {
 			cout << "---------------------------------------------------------------------------------------------\n";
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<microseconds>(stop - start);
+			auto duration = duration_cast<milliseconds>(stop - start);
 			cout << "Time taken: " << duration.count() << " milliseconds\n";
 		}
 		Ptr = Ptr->next;
@@ -262,7 +262,7 @@ void Hash::FindChainedWithSkillsXJob(string Skills, string Job_Title, int index,
 				cout << "---------------------------------------------------------------------------------------------------------------\n";
 				cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << "\n";
 				auto stop = high_resolution_clock::now();
-				auto duration = duration_cast<microseconds>(stop - start);
+				auto duration = duration_cast<milliseconds>(stop - start);
 				cout << "Time taken: " << duration.count() << " milliseconds\n";
 			}
 		}
@@ -277,7 +277,7 @@ void Hash::FindWithSkillsXCountry(string Skills,string Country) {
 			cout << "---------------------------------------------------------------------------------------------" << endl;
 			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << endl;
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<microseconds>(stop - start);
+			auto duration = duration_cast<milliseconds>(stop - start);
 			cout << "Time taken: " << duration.count() << " milliseconds\n";
 			FindChainedWithSkillsXCountry(Skills,Country, i);
 		}
@@ -293,7 +293,7 @@ void Hash::FindChainedWithSkillsXCountry(string Skills, string Country, int inde
 			cout << "---------------------------------------------------------------------------------------------" << endl;
 			cout << Ptr->ID << " " << Ptr->Job_Title << " " << Ptr->Email << " " << Ptr->Last_Name << " " << Ptr->First_Name << " " << Ptr->Phone_Number << " " << Ptr->Skills << " " << Ptr->Country << endl;
 			auto stop = high_resolution_clock::now();
-			auto duration = duration_cast<microseconds>(stop - start);
+			auto duration = duration_cast<milliseconds>(stop - start);
 			cout << "Time taken: " << duration.count() << " milliseconds\n";
 		}
 		Ptr = Ptr->next;
@@ -383,6 +383,7 @@ void Hash::RemoveWithCountry(string Country) {
 
 		if (HashTable[i]->ID != "empty" && HashTable[i]->next != NULL) {
 			RemoveChainedWithCountry(Country, i);
+			RemoveChainedWithCountry(Country, i);
 		}
 
 	}
@@ -392,10 +393,10 @@ void Hash::RemoveChainedWithCountry(string Country, int index) {
 	Person* DeLPtr;
 	Person* Ptr1;
 	Person* Ptr2;
+	bool deleted = false;
 	Ptr1 = HashTable[index]->next;
 	Ptr2 = HashTable[index];
-	bool deleted = false;
-	while (Ptr1 != NULL) {
+	while (Ptr1->next != NULL) {
 		if (Ptr1->Country == Country) {
 			DeLPtr = Ptr1;
 			cout << "---------------------------------------------------------------------------------------------------------------\n";
@@ -404,14 +405,12 @@ void Hash::RemoveChainedWithCountry(string Country, int index) {
 			Ptr1 = Ptr1->next;
 			Ptr2->next = Ptr1;
 			delete DeLPtr;
-			deleted = true;
 		}
-		if (deleted = true) {
-			Ptr1 = Ptr1->next;
-		}
+		Ptr1 = Ptr1->next;
 		Ptr2 = Ptr2->next;
 	}
 }
+
 
 int Hash::HashIndex(string key) {
 	int hash = 0;
