@@ -325,8 +325,8 @@ void Hash::RemoveWithPhoneNumber(string Phone_Number) {
 	else if (HashTable[index]->Phone_Number == Phone_Number) {
 		DeLPtr = HashTable[index];
 		HashTable[index] = HashTable[index]->next;
-		cout << "The following record is deleted:\n";
 		cout << "---------------------------------------------------------------------------------------------------------------\n";
+		cout << "The following record is deleted:\n";
 		cout << DeLPtr->ID << " " << DeLPtr->Job_Title << " " << DeLPtr->Email << " " << DeLPtr->Last_Name << " " << DeLPtr->First_Name << " " << DeLPtr->Phone_Number << " " << DeLPtr->Skills << " " << DeLPtr->Country << "\n";
 		delete DeLPtr;
 	}
@@ -344,8 +344,8 @@ void Hash::RemoveWithPhoneNumber(string Phone_Number) {
 		}
 		else {
 			DeLPtr = Ptr1;
-			cout << "The following record is deleted:\n";
 			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "The following record is deleted:\n";
 			cout << DeLPtr->ID << " " << DeLPtr->Job_Title << " " << DeLPtr->Email << " " << DeLPtr->Last_Name << " " << DeLPtr->First_Name << " " << DeLPtr->Phone_Number << " " << DeLPtr->Skills << " " << DeLPtr->Country << "\n";
 			Ptr1 = Ptr1->next;
 			Ptr2->next = Ptr1;
@@ -355,7 +355,63 @@ void Hash::RemoveWithPhoneNumber(string Phone_Number) {
 	}
 }
 
+void Hash::RemoveWithCountry(string Country) {
+	Person* DeLPtr;
 
+	for (int i = 0; i < tableSize; i++) {
+		if (HashTable[i]->Country == Country && HashTable[i]->next == NULL) {
+			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "The following record is deleted:\n";
+			cout << HashTable[i]->ID << " " << HashTable[i]->Job_Title << " " << HashTable[i]->Email << " " << HashTable[i]->Last_Name << " " << HashTable[i]->First_Name << " " << HashTable[i]->Phone_Number << " " << HashTable[i]->Skills << " " << HashTable[i]->Country << "\n";
+			HashTable[i]->ID = "empty";
+			HashTable[i]->Job_Title = "empty";
+			HashTable[i]->Email = "empty";
+			HashTable[i]->Last_Name = "empty";
+			HashTable[i]->First_Name = "empty";
+			HashTable[i]->Phone_Number = "empty";
+			HashTable[i]->Skills = "empty";
+			HashTable[i]->Country = "empty";
+		}
+		else if (HashTable[i]->Country == Country) {
+			DeLPtr = HashTable[i];
+			HashTable[i] = HashTable[i]->next;
+			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "The following record is deleted:\n";
+			cout << DeLPtr->ID << " " << DeLPtr->Job_Title << " " << DeLPtr->Email << " " << DeLPtr->Last_Name << " " << DeLPtr->First_Name << " " << DeLPtr->Phone_Number << " " << DeLPtr->Skills << " " << DeLPtr->Country << "\n";
+			delete DeLPtr;
+		}
+
+		if (HashTable[i]->ID != "empty" && HashTable[i]->next != NULL) {
+			RemoveChainedWithCountry(Country, i);
+		}
+
+	}
+}
+
+void Hash::RemoveChainedWithCountry(string Country, int index) {
+	Person* DeLPtr;
+	Person* Ptr1;
+	Person* Ptr2;
+	Ptr1 = HashTable[index]->next;
+	Ptr2 = HashTable[index];
+	bool deleted = false;
+	while (Ptr1 != NULL) {
+		if (Ptr1->Country == Country) {
+			DeLPtr = Ptr1;
+			cout << "---------------------------------------------------------------------------------------------------------------\n";
+			cout << "The following record is deleted:\n";
+			cout << DeLPtr->ID << " " << DeLPtr->Job_Title << " " << DeLPtr->Email << " " << DeLPtr->Last_Name << " " << DeLPtr->First_Name << " " << DeLPtr->Phone_Number << " " << DeLPtr->Skills << " " << DeLPtr->Country << "\n";
+			Ptr1 = Ptr1->next;
+			Ptr2->next = Ptr1;
+			delete DeLPtr;
+			deleted = true;
+		}
+		if (deleted = true) {
+			Ptr1 = Ptr1->next;
+		}
+		Ptr2 = Ptr2->next;
+	}
+}
 
 int Hash::HashIndex(string key) {
 	int hash = 0;

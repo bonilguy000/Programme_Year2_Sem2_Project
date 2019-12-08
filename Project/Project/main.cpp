@@ -57,6 +57,28 @@ int main()
 			system("CLS");
 			cout << "Select how you would like to delete a record(s): \n";
 			cout << "1. Phone Number(Single deletion)\n" << "2. Country(delete by batch)\n";
+			cout << "Option: ";
+			cin >> choice2;
+			switch (choice2) {
+			case 1:
+				system("CLS");
+				cout << "\nInput a Phone Number for deleting a record: ";
+				cin >> UsrInput;
+				cin.ignore();
+				Test.RemoveWithPhoneNumber(UsrInput);
+				system("pause");
+				system("CLS");
+				break;
+			case 2:
+				system("CLS");
+				cout << "\nInput a Country for deleting a batch of records: ";
+				cin.ignore();
+				getline(cin, UsrInput);
+				Test.RemoveWithCountry(UsrInput);
+				system("pause");
+				system("CLS");
+				break;
+			}
 			break;
 
 		case 3:
