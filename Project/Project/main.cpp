@@ -80,7 +80,7 @@ int main()
 				break;
 			case 3:
 				system("CLS");
-				break:
+				break;
 			}
 			break;
 
